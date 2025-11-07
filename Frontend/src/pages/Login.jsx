@@ -1,15 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const { user, token, loading, error } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
   const { login } = useAppContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    // login(email, password);
+    dispatch(loginUser({ email, password }));
   };
+
+  useEffect(() => {
+    if (user?.role) {
+      switch (user.role) {
+        case "student":
+          navigate("/student");
+          break;
+        case "teacher":
+          navigate("/teacher");
+          break;
+        case "principal":
+          navigate("/principal/dashboard");
+          break;
+        default:
+          navigate("/");
+      }
+    }
+  }, [user, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-black via-gray-900 to-black px-4">

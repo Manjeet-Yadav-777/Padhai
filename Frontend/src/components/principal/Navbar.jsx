@@ -1,7 +1,8 @@
+import { useSelector } from "react-redux";
 import { useAppContext } from "../../context/AppProvider";
 
 export default function Navbar() {
-  const { user, logout } = useAppContext();
+  const { user } = useSelector((state) => state.auth);
   console.log(user);
 
   return (
@@ -16,10 +17,7 @@ export default function Navbar() {
             <span className="font-medium text-gray-300">
               👋 {user.username || "User"}
             </span>
-            <button
-              onClick={logout}
-              className="bg-linear-to-r from-gray-700 to-gray-600 text-white font-semibold px-4 py-1.5 rounded-xl hover:from-gray-600 hover:to-gray-500 transition-all duration-200"
-            >
+            <button className="bg-linear-to-r from-gray-700 to-gray-600 text-white font-semibold px-4 py-1.5 rounded-xl hover:from-gray-600 hover:to-gray-500 transition-all duration-200">
               Logout
             </button>
           </>

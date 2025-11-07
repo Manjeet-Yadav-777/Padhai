@@ -33,7 +33,7 @@ export const register = async (req, res) => {
     });
     const save = await newUser.save();
     return successHandler(res, "User registered successfully", {
-      user: save,
+      save,
     });
   } catch (error) {
     return errorHandler(error, req, res);
@@ -87,5 +87,15 @@ export const logout = async (req, res) => {
     return successHandler(res, "Logout successful");
   } catch (error) {
     return errorHandler(error, req, res);
+  }
+};
+
+// Controller
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server error" });
   }
 };
