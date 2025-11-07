@@ -1,9 +1,13 @@
-import { useSelector } from "react-redux";
-import { useAppContext } from "../../context/AppProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../features/auth/authSlice";
 
 export default function Navbar() {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutUser()); // thunk dispatch hoga yahan
+  };
 
   return (
     <nav className="bg-linear-to-r from-gray-900 via-black to-gray-900 text-gray-200 shadow-lg px-6 py-3 flex justify-between items-center border-b border-gray-800">
@@ -17,7 +21,10 @@ export default function Navbar() {
             <span className="font-medium text-gray-300">
               👋 {user.username || "User"}
             </span>
-            <button className="bg-linear-to-r from-gray-700 to-gray-600 text-white font-semibold px-4 py-1.5 rounded-xl hover:from-gray-600 hover:to-gray-500 transition-all duration-200">
+            <button
+              onClick={handleLogout}
+              className="bg-linear-to-r from-gray-700 to-gray-600 text-white font-semibold px-4 py-1.5 rounded-xl hover:from-gray-600 hover:to-gray-500 transition-all duration-200"
+            >
               Logout
             </button>
           </>
