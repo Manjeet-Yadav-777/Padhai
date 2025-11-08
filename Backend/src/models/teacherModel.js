@@ -1,17 +1,10 @@
 import mongoose from "mongoose";
 
-const studentSchema = new mongoose.Schema(
+const teacherSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-    },
-
-    //   addmission Number
-
-    rollNumber: {
-      type: String,
-      required: true,
     },
 
     firstName: {
@@ -32,16 +25,16 @@ const studentSchema = new mongoose.Schema(
       enum: ["male", "female", "others"],
     },
 
+    contactNumber: {
+      type: String,
+    },
+
     address: {
       street: String,
       city: String,
       state: String,
       pincode: String,
       country: String,
-    },
-
-    contactNumber: {
-      type: String,
     },
 
     email: {
@@ -55,34 +48,38 @@ const studentSchema = new mongoose.Schema(
       required: true,
     },
 
-    classId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Class",
-    },
-
-    sectionId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Section",
-    },
-
-    academicYear: {
+    qualification: {
       type: String,
     },
 
-    addmissionDate: {
+    experience: {
+      type: Number,
+    },
+
+    joinngDate: {
       type: Date,
       default: Date.now,
     },
 
-    parentsDetails: {
-      parentName: String,
-      occupation: String,
-      contact: String,
+    subject: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Subject",
+    },
+
+    classTeacherOf: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Class",
+    },
+
+    salary: {
+      basic: Number,
+      hra: Number,
+      da: Number,
+      total: Number,
     },
   },
   { timestamps: true }
 );
 
-const Student = mongoose.model("Student", studentSchema);
-
-export default Student;
+const Teacher = mongoose.model("Teacher", teacherSchema);
+export default Teacher;
