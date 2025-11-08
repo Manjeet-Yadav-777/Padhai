@@ -60,11 +60,6 @@ const studentSchema = new mongoose.Schema(
       ref: "Class",
     },
 
-    sectionId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Section",
-    },
-
     academicYear: {
       type: String,
     },
