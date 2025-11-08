@@ -11,7 +11,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-linear-to-r from-gray-900 via-black to-gray-900 text-gray-200 shadow-lg px-6 py-3 flex justify-between items-center border-b border-gray-800">
-      <h1 className="text-2xl font-extrabold tracking-wide bg-linear-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent">
+      <h1 className=" pl-10 lg:pl-0 text-2xl font-extrabold tracking-wide bg-linear-to-r from-gray-100 to-gray-400 bg-clip-text text-transparent">
         🏫 SchoolMS
       </h1>
 
