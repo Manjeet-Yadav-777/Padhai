@@ -44,17 +44,6 @@ const studentSchema = new mongoose.Schema(
       type: String,
     },
 
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
-    loginPassword: {
-      type: String,
-      required: true,
-    },
-
     classId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Class",

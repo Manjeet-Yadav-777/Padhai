@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
       req.cookies?.token || req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
-      return errorHandler("Please login first!", req, res);
+      return errorHandler(res, "Please login first!");
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -15,7 +15,7 @@ const auth = async (req, res, next) => {
 
     next();
   } catch (error) {
-    return errorHandler("Invalid or expired token!", req, res);
+    return errorHandler(res, "Invalid or expired token!");
   }
 };
 

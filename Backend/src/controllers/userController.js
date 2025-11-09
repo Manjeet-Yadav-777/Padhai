@@ -11,13 +11,13 @@ export const register = async (req, res) => {
     // Validate input
 
     if (!username || !email || !password || !role) {
-      return errorHandler("All fields are required", req, res);
+      return errorHandler(res, "All fields are required");
     }
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return errorHandler("User already exists", req, res);
+      return errorHandler(res, "User already exists");
     }
 
     // Hash password
@@ -36,7 +36,7 @@ export const register = async (req, res) => {
       save,
     });
   } catch (error) {
-    return errorHandler(error, req, res);
+    return errorHandler(res, error);
   }
 };
 
@@ -46,20 +46,20 @@ export const login = async (req, res) => {
 
     // Validate input
     if (!email || !password) {
-      return errorHandler("All fields are required", req, res);
+      return errorHandler(res, "All fields are required");
     }
     // Check if user exists
 
     const user = await User.findOne({ email });
 
     if (!user) {
-      return errorHandler("Invalid credentials", req, res);
+      return errorHandler(res, "Invalid credentials");
     }
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return errorHandler("Invalid Password", req, res);
+      return errorHandler(res, "Invalid Password");
     }
 
     // Generate JWT
@@ -77,25 +77,29 @@ export const login = async (req, res) => {
     // Successful login
     return successHandler(res, "Login successful", { user, token });
   } catch (error) {
-    return errorHandler(error, req, res);
+    return errorHandler(res, error.message || error);
   }
 };
 
-export const logout = async (req, res) => {
+export const logout = (req, res) => {
   try {
-    await res.clearCookie("token");
-    return successHandler(res, "Logout successful");
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    });
+    return successHandler(res, "Logout successful", null);
   } catch (error) {
-    return errorHandler(error, req, res);
+    return errorHandler(res, error.message || error);
   }
 };
 
 // Controller
-export const getProfile = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.status(200).json({ success: true, data: user });
-  } catch (error) {
-    res.status(500).json({ success: false, message: "Server error" });
-  }
-};
+// export const getProfile = async (req, res) => {
+//   try {
+//     const user = await User.findById(req.user.id).select("-password");
+//     res.status(200).json({ success: true, data: user });
+//   } catch (error) {
+//     res.status(500).json({ success: false, message: "Server error" });
+//   }
+// };

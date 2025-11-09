@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import userRouter from "./routes/userRoute.js";
+import principalRouter from "./routes/principalRoute.js";
 import { errorHandler } from "./utils/errorHandler.js";
 
 dotenv.config();
@@ -22,9 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/user", userRouter);
+app.use("/api/principal", principalRouter);
 
-
-// Global error handler
-app.use(errorHandler);
+// app.use(errorHandler);
 
 export default app;
