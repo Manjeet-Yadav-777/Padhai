@@ -16,6 +16,7 @@ export const addStudent = async (req, res) => {
       contactNumber,
       classId,
       academicYear,
+      addmissionDate,
       parentsDetails,
       email,
       password,
@@ -49,6 +50,7 @@ export const addStudent = async (req, res) => {
       contactNumber,
       classId,
       academicYear,
+      addmissionDate,
       parentsDetails,
     });
 
@@ -63,9 +65,52 @@ export const addStudent = async (req, res) => {
 
 export const getAllStudents = async (req, res) => {
   try {
-    const allstudents = await Student.find();
+    const students = await Student.find();
 
-    return successHandler(res, "All Students", { allstudents });
+    if (!students) {
+      return errorHandler(res, "Not Found");
+    }
+
+    return successHandler(res, "All Students", students);
+  } catch (error) {
+    return errorHandler(res, error.message || error);
+  }
+};
+
+export const deleteStudent = async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return errorHandler(res, "Id Must be Required");
+    }
+
+    const st = await Student.findOne({ userId });
+
+    if (!st) {
+      return errorHandler(res, "wrong UserId");
+    }
+
+    await User.findByIdAndDelete({ _id: userId });
+    await Student.findByIdAndDelete(st._id);
+
+    return successHandler(res, "Student Deleted", null);
+  } catch (error) {
+    return errorHandler(res, error.message || error);
+  }
+};
+
+export const getSingleStudent = async (req, res) => {
+  try {
+    const { stid } = req.body;
+
+    if (!stid) {
+      return errorHandler(res, "Id Required");
+    }
+
+    const student = await Student.findOne({ _id: stid });
+
+    return successHandler(res, "Student By Id", student);
   } catch (error) {
     return errorHandler(res, error.message || error);
   }

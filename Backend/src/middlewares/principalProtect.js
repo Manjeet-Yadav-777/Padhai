@@ -5,11 +5,11 @@ export const principalProtection = async (req, res, next) => {
     const role = req.user.role;
 
     if (role != "principal") {
-      return errorHandler("Not Autorised !", req, res);
+      return errorHandler(res, "Not Autorised !");
     }
 
     next();
   } catch (error) {
-    return errorHandler(error, req, res);
+    return errorHandler(res, error.message || error);
   }
 };
