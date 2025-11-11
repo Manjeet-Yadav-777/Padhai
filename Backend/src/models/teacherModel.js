@@ -37,17 +37,6 @@ const teacherSchema = new mongoose.Schema(
       country: String,
     },
 
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-
-    loginPassword: {
-      type: String,
-      required: true,
-    },
-
     qualification: {
       type: String,
     },
