@@ -10,6 +10,8 @@ import {
   getAllTeachers,
   getSingleStudent,
   getSingleTeacher,
+  updateStudent,
+  updateTeacher,
 } from "../controllers/principalController.js";
 
 const principalRouter = express.Router();
@@ -37,6 +39,13 @@ principalRouter.get(
   getSingleStudent
 );
 
+principalRouter.patch(
+  "/updatestudent/:id",
+  auth,
+  principalProtection,
+  updateStudent
+);
+
 // Teacher Routes
 principalRouter.post("/addteacher", auth, principalProtection, addTeacher);
 principalRouter.get(
@@ -58,6 +67,13 @@ principalRouter.get(
   auth,
   principalProtection,
   getSingleTeacher
+);
+
+principalRouter.patch(
+  "/updateteacher/:id",
+  auth,
+  principalProtection,
+  updateTeacher
 );
 
 export default principalRouter;

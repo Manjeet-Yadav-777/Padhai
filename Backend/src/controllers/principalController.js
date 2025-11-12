@@ -20,6 +20,7 @@ export const addStudent = async (req, res) => {
       academicYear,
       addmissionDate,
       parentsDetails,
+      fees,
       email,
       password,
     } = req.body;
@@ -54,6 +55,7 @@ export const addStudent = async (req, res) => {
       academicYear,
       addmissionDate,
       parentsDetails,
+      fees,
     });
 
     return successHandler(res, "Student Created", {
@@ -117,6 +119,25 @@ export const getSingleStudent = async (req, res) => {
     }
 
     return successHandler(res, "Student By Id", student);
+  } catch (error) {
+    return errorHandler(res, error.message || error);
+  }
+};
+
+export const updateStudent = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+
+    const updated = await Student.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    if (!updated) {
+      return errorHandler(res, "Student Not Found");
+    }
+
+    return successHandler(res, "Student Updated", updated);
   } catch (error) {
     return errorHandler(res, error.message || error);
   }
@@ -231,6 +252,24 @@ export const getSingleTeacher = async (req, res) => {
     const teacher = await Teacher.findOne({ _id: thid });
 
     return successHandler(res, "Teacher By Id", teacher);
+  } catch (error) {
+    return errorHandler(res, error.message || error);
+  }
+};
+
+export const updateTeacher = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const updated = await Teacher.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    if (!updated) {
+      return errorHandler(res, "Teacher Not Found");
+    }
+
+    return successHandler(res, "Teacher Updated", updated);
   } catch (error) {
     return errorHandler(res, error.message || error);
   }

@@ -63,6 +63,10 @@ const studentSchema = new mongoose.Schema(
       occupation: String,
       contact: String,
     },
+
+    fees: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

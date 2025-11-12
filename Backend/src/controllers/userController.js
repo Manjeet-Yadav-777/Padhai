@@ -95,11 +95,13 @@ export const logout = (req, res) => {
 };
 
 // Controller
-// export const getProfile = async (req, res) => {
-//   try {
-//     const user = await User.findById(req.user.id).select("-password");
-//     res.status(200).json({ success: true, data: user });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: "Server error" });
-//   }
-// };
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    console.log(req.user.id);
+
+    return successHandler(res, "Your Profile", user);
+  } catch (error) {
+    return errorHandler(res, error.message || error);
+  }
+};
