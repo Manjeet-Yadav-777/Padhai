@@ -23,7 +23,7 @@ const PrincipalSidebar = () => {
   ];
 
   return (
-    <div className="bg-[#181924] min-h-[100vh] min-w-64 text-gray-300 flex flex-col px-10 py-10 gap-2">
+    <div className="bg-[#181924] min-h-[90vh] min-w-64 text-gray-300 flex flex-col px-10 py-7 gap-2">
       {menuItems.map((item) => {
         return (
           <Link to={item.link} className="py-2 text-lg flex items-center gap-2">
