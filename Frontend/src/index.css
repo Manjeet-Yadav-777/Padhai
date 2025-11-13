@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+*{
+    font-family: "Roboto", sans-serif;
+}
+
+.pb{
+    color : "#161721"
+}
+
+.mdb{
+    color : "#151722"
+}
+
+.lb{
+    color: "#1B1C27";
+}
+
+
+.bpb{
+    background-color : "#161721"
+}
+
+.bmdb{
+    background-color : "#151722"
+}
+
+.blb{
+    background-color: "#1B1C27";
+}
+
+

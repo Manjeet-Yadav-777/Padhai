@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useUser } from "../../context/userContext";
 
 const Login = () => {
+  const { login } = useUser();
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -17,43 +20,47 @@ const Login = () => {
     e.preventDefault();
 
     console.log(data);
-
-    // api call
+    login(data);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black text-gray-100">
-      <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-sm transition-all duration-300 hover:shadow-gray-700/50">
-        <h2 className="text-3xl font-semibold text-center mb-6">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
+    <div className="min-h-screen flex items-center justify-center bg-[#161721] text-gray-100">
+      <div className="bg-[#1B1C28] px-10 py-14 lg:p-14 rounded-xl shadow-2xl w-full lg:max-w-lg max-w-md transition-all duration-300">
+        <div className="text-center mb-6 lg:mb-8">
+          <h2 className="text-3xl text-gray-400 tracking-wide">Gurukul MIS</h2>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-5 bg-[#1C1D28]">
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
             <input
               type="email"
               name="email"
               value={data.email}
               onChange={handleChange}
-              placeholder="Enter your email"
-              className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-300"
+              placeholder="Email"
+              className="w-full px-4 py-3 outline-none rounded-lg border border-gray-600 bg-[#1b1c28]"
             />
           </div>
+
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
             <input
               type="password"
               name="password"
               value={data.password}
               onChange={handleChange}
-              placeholder="Enter your password"
-              className="w-full px-4 py-2 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-300"
+              placeholder="Password"
+              className="w-full px-4 py-3 outline-none rounded-lg border border-gray-600"
             />
           </div>
+
           <button
             type="submit"
-            className="w-full py-2 rounded-lg bg-gray-600 text-white font-semibold mt-4 hover:bg-gray-500 cursor-pointer transition-all duration-300 transform hover:scale-[1.02]"
+            className="w-full bg-[#3262CF] py-3 cursor-pointer mt-4 rounded-md text-xl text-gray-200 font-semibold"
           >
             Login
           </button>
+          <p className="text-center text-gray-500 text-sm">
+            don't have credentials Get your credentials from admin
+          </p>
         </form>
       </div>
     </div>
