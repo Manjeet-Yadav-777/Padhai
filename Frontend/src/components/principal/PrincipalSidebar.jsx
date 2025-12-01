@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { BookOpen, GraduationCap, LayoutDashboard, User } from "lucide-react";
 
 const PrincipalSidebar = () => {
+  const [selected, setSelected] = useState(() => {
+    return sessionStorage.getItem("selected") || 0;
+  });
+
   const menuItems = [
     {
       name: "Dashboard",
@@ -22,11 +26,21 @@ const PrincipalSidebar = () => {
     },
   ];
 
+  useEffect(() => {
+    sessionStorage.setItem("selected", selected);
+  }, [selected]);
+
   return (
     <div className="bg-[#181924] min-h-[90vh] min-w-64 text-gray-300 flex flex-col px-10 py-7 gap-2">
-      {menuItems.map((item) => {
+      {menuItems.map((item, idx) => {
         return (
-          <Link to={item.link} className="py-2 text-lg flex items-center gap-2">
+          <Link
+            onClick={() => setSelected(idx)}
+            to={item.link}
+            className={`py-2 text-lg px-5 flex items-center gap-2 ${
+              selected == idx ? "bg-blue-500  font-bold rounded-md" : ""
+            }`}
+          >
             <span>{item.icon}</span> {item.name}
           </Link>
         );
