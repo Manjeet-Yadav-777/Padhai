@@ -5,6 +5,7 @@ import PrincipalLayout from "../layouts/principal/principalLayout";
 import PrincipalDashbboard from "../pages/principal/PrincipalDashbboard";
 import PrincipalStudents from "../pages/principal/PrincipalStudents";
 import PrincipalTeachers from "../pages/principal/PrincipalTeachers";
+import StudentDetail from "../pages/principal/StudentDetail";
 
 const AppRouter = () => {
   return (
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Route path="dashboard" element={<PrincipalDashbboard />} />
         <Route path="students" element={<PrincipalStudents />} />
         <Route path="teachers" element={<PrincipalTeachers />} />
+        <Route path="student/:id" element={<StudentDetail />} />
       </Route>
     </Routes>
   );
