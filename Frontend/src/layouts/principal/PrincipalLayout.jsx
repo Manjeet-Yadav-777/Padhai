@@ -13,7 +13,10 @@ const PrincipalLayout = () => {
           <PrincipalSidebar />
         </div>
 
-        <div className="flex-1 h-[calc(100vh-64px)] overflow-auto scrollbar-hide">
+        <div
+          id="outlet-scroll"
+          className="flex-1 h-[calc(100vh-64px)] overflow-auto scrollbar-hide"
+        >
           <Outlet />
         </div>
       </div>

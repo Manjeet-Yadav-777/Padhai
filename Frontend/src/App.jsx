@@ -1,10 +1,14 @@
 import React from "react";
-import Login from "./pages/common/Login";
-import { Route, Routes } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
-  return <AppRouter />;
+  return (
+    <>
+      <ScrollToTop />
+      <AppRouter />
+    </>
+  );
 };
 
 export default App;
