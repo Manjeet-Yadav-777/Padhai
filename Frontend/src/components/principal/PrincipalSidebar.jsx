@@ -38,7 +38,9 @@ const PrincipalSidebar = () => {
             onClick={() => setSelected(idx)}
             to={item.link}
             className={`py-2 text-lg px-5 flex items-center gap-2 ${
-              selected == idx ? "bg-blue-500  font-bold rounded-md" : ""
+              selected == idx
+                ? "bg-[#26d2d9] text-black  font-bold rounded-md"
+                : ""
             }`}
           >
             <span>{item.icon}</span> {item.name}

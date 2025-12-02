@@ -7,7 +7,7 @@ const PrincipalStudents = () => {
       <div className="flex justify-between  items-center mb-10">
         <h2 className="text-3xl">All Students</h2>
 
-        <button className="bg-blue-500 px-7 text-sm py-3 mr-14 cursor-pointer rounded-md font-bold hover:bg-blue-600">
+        <button className="bg-[#26d2d9] text-black text-black px-7 text-sm py-3 mr-14 cursor-pointer rounded-md font-bold hover:bg-[#06f2f9]">
           ADD STUDENT
         </button>
       </div>

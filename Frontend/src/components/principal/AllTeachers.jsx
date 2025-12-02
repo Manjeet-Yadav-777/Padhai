@@ -25,7 +25,7 @@ const AllTeachers = () => {
             <p className="text-xs font-bold">₹{teacher.salary.total}</p>
             <p
               onClick={() => navigate(`/principal/teacher/${teacher.userId}`)}
-              className="text-sm bg-blue-500 w-fit px-5 py-1 font-bold rounded-sm hover:bg-blue-600 cursor-pointer"
+              className="text-sm bg-[#26d2d9] w-fit px-5 py-1 font-bold rounded-sm hover:bg-[#06f2f9] text-black cursor-pointer"
             >
               View
             </p>

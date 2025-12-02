@@ -26,7 +26,7 @@ const AllStudents = () => {
             <p className="text-xs font-bold">{student.addmissionDate}</p>
             <p
               onClick={() => navigate(`/principal/student/${student._id}`)}
-              className="text-sm bg-blue-500 w-fit px-5 py-1 font-bold rounded-sm hover:bg-blue-600 cursor-pointer"
+              className="text-sm bg-[#26d2d9] text-black w-fit px-5 py-1 font-bold rounded-sm hover:bg-[#06f2f9] cursor-pointer"
             >
               View
             </p>
