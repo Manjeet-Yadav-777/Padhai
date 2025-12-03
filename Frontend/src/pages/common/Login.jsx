@@ -19,7 +19,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(data);
     login(data);
   };
 
@@ -54,7 +53,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#3262CF] py-3 cursor-pointer mt-4 rounded-md text-xl text-gray-200 font-semibold"
+            className="w-full bg-[#181924] py-3 cursor-pointer mt-4 rounded-md text-xl text-gray-200 font-semibold"
           >
             Login
           </button>
